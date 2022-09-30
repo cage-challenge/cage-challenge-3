@@ -165,5 +165,27 @@ The action space of the agents in CAGE Challenge 3. The team column indicates wh
 | AllowTraffic               | Red, Blue  | Stop dropping packets from the target IP address                                   | None                    | Local          | None                                  | None               | IP Address  |
 | SendData                   | Green      | Send a variable amount of data to another drone                                    | Very Low (1%)  | Remote         | Low (5%)                              | None               | IP Address  |
 
+
+## Appendix B – Agent observation space
+
+Support for Multi-Agent Reinforcement Learning (MARL) algorithms is provided through a wrapper to the PettingZoo environment. 
+This wrapper contains utility functions that alter the observation space in order to enable the use of Deep Reinforcement Learning techniques. 
+The altered observation space for an agent operating on host drone _h_ is described in the table below, where 0 <= _h_ < _n_ and _n_ is the number of drones in the environment. 
+Note this agent may belong to either the Red team or Blue team. 
+Each observation within the space is referenced by an index, and the total number of observations is dependent on the number of drones within the environment, with _n_ drones resulting in a total of 6*n* observations.
+
+| Index            | Description                                                                                                                                                                                                                                            | Values                                                                                                                                |
+|:-----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
+| 0                | Indicates if the previous action was identified as successful.                                                                                                                                                                                         | True: 0 <br /> False: 1 <br /> Unknown: 2                                                                                             |
+| 1 + <br /> \[0, ...,_i_,... _n_-1\]          | The value at index (_i_ + 1) indicates if the IP address of drone _i_ has been blocked by the host drone.                                                                                                                               | Unblocked: 0 <br /> Blocked: 1                                                                                                        |
+| _n_ + 1            | Malicious process detected on the host drone.                                                                                                                                                                                                          | No flagged malicious processes: 0 <br /> A flagged malicious process: 1                                                               |
+| _n_ + 2 + <br /> \[0, ...,_i_,... _n_-1\]    | The value at index (_i_ + _n_ + 2) indicates the number of malicious network events from drone _i_ that were flagged by the host drone.                                                                                              | No flagged malicious network events: 0 <br /> 1 flagged malicious network event: 1 <br /> 2 flagged malicious network events: 2       |
+| 2*n*+2 | The _x_ position of the host drone | 0  <=  _x_  <=  100 |
+| 2*n*+3 | The _y_ position of the host drone | 0  <=  _y_  <=  100 |
+| (2*n* + 4) + <br /> 4.\[0, ...,_i_,..., _n_-2\] | Index (2*n*+4+4*i*) holds the ID (drone number) denoted _d_. | 0 <= _d_ < _n_  and _d_ != _h_ |
+| (2*n* + 5) + <br /> 4.\[0, ...,_i_,..., _n_-2\] | Index (2*n*+5+4*i*) contains the _x_ position for drone _d_. | 0  <=  _x_  <=  100 |
+| (2*n* + 6) + <br /> 4.\[0, ...,_i_,..., _n_-2\] | Index (2*n*+6+4*i*) contains the _y_ position for drone _d_. | 0  <=  _y_  <=  100 |
+| (2*n* + 7) + <br /> 4.\[0, ...,_i_,..., _n_-2\] | Index (2*n*+7+4*i*) indicates if a new session was created on drone _d_. | No sessions: 0 <br /> At least one session: 1 |
+
 [1]: https://github.com/cage-challenge/cage-challenge-1 "CAGE Challenge 1"
 [2]: https://github.com/cage-challenge/cage-challenge-2 "CAGE Challenge 2"
