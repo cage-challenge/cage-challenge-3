@@ -140,7 +140,7 @@ The validation process involves summing the average scores of 1000 episodes.  Th
 
 ### Important dates 
 
-September 2022: Challenge 3 announced, released and open for submissions. 
+30 September 2022: Challenge 3 announced, released and open for submissions. 
 
 31 January 2023 (any time zone): Final day for challenge submissions. 
 
