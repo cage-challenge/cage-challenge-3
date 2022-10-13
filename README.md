@@ -77,7 +77,7 @@ The Blue team is able to permanently lose an episode. The SeizeControl action pe
 
 We use the Cyber Operations Research Gym (CybORG) to simulate the cyber environment for CAGE Challenge 3.  
 
-Please see https://github.com/cage-challenge/CybORG/tree/0f7c13a for further instructions on how to install and run the environment.
+Please see https://github.com/cage-challenge/CybORG/tree/a2d03f9 for further instructions on how to install and run the environment.
 
 ## How to submit responses   
 
