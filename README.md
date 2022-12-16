@@ -100,7 +100,7 @@ Please submit the following:
 
 We welcome multiple submissions per team. Please let us know if additional submissions are an update to replace an earlier submission, or a brand new submission. Unless informed otherwise, we will assume that additional submissions replace previous ones. The description of the approach you took to develop your agents may cover multiple different submissions.
 
-For more detailed instructions please see the [submission readme](CybORG/CybORG/Evaluation/submission/submission_readme.md)
+For more detailed instructions please see the [submission readme](https://github.com/cage-challenge/CybORG/tree/3045f16/CybORG/Evaluation/submission/submission_readme.md)
 
 We are also imposing an execution time limit on all submissions. Submissions should complete 100 episodes within 1 hour when evaluated on our Amazon EC2 C4.large instance.
 
