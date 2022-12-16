@@ -77,19 +77,34 @@ The Blue team is able to permanently lose an episode. The SeizeControl action pe
 
 We use the Cyber Operations Research Gym (CybORG) to simulate the cyber environment for CAGE Challenge 3.  
 
-Please see https://github.com/cage-challenge/CybORG/tree/a2d03f9 for further instructions on how to install and run the environment.
+Please see https://github.com/cage-challenge/CybORG/tree/3045f16 for further instructions on how to install and run the environment.
 
 ## How to submit responses   
 
-Any queries re the challenge can be submitted via email to: cage.aco.challenge@gmail.com 
+Submissions can be made either via email to cage.aco.challenge@gmail.com, with all the required files included as an attachment, or by pointing us to your GitHub repo. 
+For private repos grant read access for the cage-challenge user. If submitting via GitHub please also send an email to cage.aco.challenge@gmail.com so that we may confirm your submission.
 
-We will update this section with further details on how to submit Blue agents in coming weeks. Please watch this repo for updates.
+Please submit the following:
+- A team name and contact details
+- All files required to run the agents
+- A file named submission.py containing the following:
+  - agents dictionary
+  - wrap function
+  - submission_name string
+  - submission_team string
+  - submission_technique string
+- A Dockerfile that creates the environment required to run your agents
+- A description of the approach you took to develop your agents
+- The file containing the summary of the evaluation results
+- The file containing the full evaluation results
 
-Submissions should include at least the following:
-* A team name and contact details.
-* The code implementing the agent, with a list of dependencies.
-* A description of your approach in developing a Blue agent.
-* The files and terminal output of the evaluation function. 
+We welcome multiple submissions per team. Please let us know if additional submissions are an update to replace an earlier submission, or a brand new submission. Unless informed otherwise, we will assume that additional submissions replace previous ones. The description of the approach you took to develop your agents may cover multiple different submissions.
+
+For more detailed instructions please see the [submission readme](CybORG/CybORG/Evaluation/submission/submission_readme.md)
+
+We are also imposing an execution time limit on all submissions. Submissions should complete 100 episodes within 1 hour when evaluated on our Amazon EC2 C4.large instance.
+
+Any queries regarding the challenge can be submitted via email to cage.aco.challenge@gmail.com
 
 We also invite teams to submit full papers on their work on this CAGE challenge or using the CybORG environment to IJCAI, AAAI, ICML or any other venue of their choice. Please cite the challenge announcement as follows to reference the challenge: 
 
