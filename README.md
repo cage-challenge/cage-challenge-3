@@ -77,7 +77,7 @@ The Blue team is able to permanently lose an episode. The SeizeControl action pe
 
 We use the Cyber Operations Research Gym (CybORG) to simulate the cyber environment for CAGE Challenge 3.  
 
-Please see https://github.com/cage-challenge/CybORG/tree/3045f16 for further instructions on how to install and run the environment.
+Please see https://github.com/cage-challenge/CybORG/tree/581206e for further instructions on how to install and run the environment.
 
 ## How to submit responses   
 
@@ -100,7 +100,7 @@ Please submit the following:
 
 We welcome multiple submissions per team. Please let us know if additional submissions are an update to replace an earlier submission, or a brand new submission. Unless informed otherwise, we will assume that additional submissions replace previous ones. The description of the approach you took to develop your agents may cover multiple different submissions.
 
-For more detailed instructions please see the [submission readme](https://github.com/cage-challenge/CybORG/tree/3045f16/CybORG/Evaluation/submission/submission_readme.md)
+For more detailed instructions please see the [submission readme](https://github.com/cage-challenge/CybORG/tree/581206e/CybORG/Evaluation/submission/submission_readme.md)
 
 We are also imposing an execution time limit on all submissions. Submissions should complete 100 episodes within 1 hour when evaluated on our Amazon EC2 C4.large instance.
 
