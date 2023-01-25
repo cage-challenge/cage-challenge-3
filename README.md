@@ -2,6 +2,10 @@
 
 ![TTCP Logo](./images/TTCP-Logo-small.png) ![CAGE Logo](./images/CAGE-Logo-small.png)
 
+**New CAGE Challenge 3 Deadline: 17th of February 2023**
+
+Several significant issues with CAGE Challenge 3 have been identified, which had a major impact on the reward and scoring of the challenge. We have resolved these issues in the updated CybORG version 3.1. To provide you with more time to train and validate your solutions using the updated version of CybORG, we are pushing back the submission deadline to the 17th of February. Please ensure that all submissions are for version 3.1.
+
 ## Introduction
 
 The TTCP[^1] CAGE[^2] Challenges are a series of public challenges instigated to foster the development of autonomous cyber defensive agents. The CAGE Challenges use cybersecurity scenarios inspired by real-world situations. The [first CAGE Challenge][1] was released to the public in August 2021 and the [second][2] in April 2022. The challenges use the Cyber Operations Research Gym (CybORG) to provide a cyber simulation for the training and evaluation AI algorithms such as Deep Reinforcement Learning. The CAGE activity aims to run a series of challenges of increasing complexity and realism. This CAGE Challenge 3 (CC3) is intended to present a new scenario that is tailored to some of the unique requirements of military systems.
@@ -77,7 +81,7 @@ The Blue team is able to permanently lose an episode. The SeizeControl action pe
 
 We use the Cyber Operations Research Gym (CybORG) to simulate the cyber environment for CAGE Challenge 3.  
 
-Please see https://github.com/cage-challenge/CybORG/tree/581206e for further instructions on how to install and run the environment.
+Please see https://github.com/cage-challenge/CybORG/tree/dd586a3 for further instructions on how to install and run the environment.
 
 ## How to submit responses   
 
@@ -96,11 +100,11 @@ Please submit the following:
 - A Dockerfile that creates the environment required to run your agents
 - A description of the approach you took to develop your agents
 - The file containing the summary of the evaluation results
-- The file containing the full evaluation results
+- (optional) The file containing the full evaluation results
 
 We welcome multiple submissions per team. Please let us know if additional submissions are an update to replace an earlier submission, or a brand new submission. Unless informed otherwise, we will assume that additional submissions replace previous ones. The description of the approach you took to develop your agents may cover multiple different submissions.
 
-For more detailed instructions please see the [submission readme](https://github.com/cage-challenge/CybORG/tree/581206e/CybORG/Evaluation/submission/submission_readme.md)
+For more detailed instructions please see the [submission readme](https://github.com/cage-challenge/CybORG/tree/dd586a3/CybORG/Evaluation/submission/submission_readme.md)
 
 We are also imposing an execution time limit on all submissions. Submissions should complete 100 episodes within 1 hour when evaluated on our Amazon EC2 C4.large instance.
 
@@ -157,9 +161,9 @@ The validation process involves summing the average scores of 1000 episodes.  Th
 
 30 September 2022: Challenge 3 announced, released and open for submissions. 
 
-31 January 2023 (any time zone): Final day for challenge submissions. 
+**Updated** 17 February 2023 (any time zone): Final day for challenge submissions. 
 
-14 February 2023: Final results announced. 
+**Updated** 3 March 2023: Final results announced. 
 
 ## Future challenges 
 
@@ -173,12 +177,12 @@ The action space of the agents in CAGE Challenge 3. The team column indicates wh
 |:---------------------------|:-----------|:-----------------------------------------------------------------------------------|:------------------------|:---------------|:--------------------------------------|:-------------------|:------------|
 | ExploitDroneVulnerability  | Red        | Establish a low privileged session on a drone                                      | Low (1%)               | Remote         | Moderate (50%)                        | High (50%)         | IP Address  |
 | SeizeControl               | Red        | Replace an agent on the target drone with a Red agent                                   | None                    | Local          | None                            | None          | IP Address  |
-| FloodBandwidth             | Red        | Send large amounts of meaningless data which consumes a large amount of bandwidth  | High (90%)              | Remote         | High (100%)                            | None               | IP Address  |
-| RetakeControl              | Blue       | Remove all Red agents and sessions, and create a Blue agent on the drone           | Moderate (5%)          | Remote         | Low (15%)                             | Low (5%)          | IP Address  |
+| FloodBandwidth             | Red        | Send large amounts of meaningless data which consumes a large amount of bandwidth  | High (100%)              | Remote         | High (100%)                            | None               | IP Address  |
+| RetakeControl              | Blue       | Remove all Red agents and sessions, and create a Blue agent on the drone           | Moderate (10%)          | Remote         | Low (15%)                             | Moderate (25%)          | IP Address  |
 | RemoveOtherSessions        | Blue       | Removes all sessions with low privileges                                           | None                    | Local          | None                                  | Low (10%)     |             |
 | BlockTraffic               | Red, Blue  | Drop incoming traffic from the target IP address                                   | None                    | Local          | None                                  | None               | IP Address  |
 | AllowTraffic               | Red, Blue  | Stop dropping packets from the target IP address                                   | None                    | Local          | None                                  | None               | IP Address  |
-| SendData                   | Green      | Send a variable amount of data to another drone                                    | Very Low (1%)  | Remote         | Low (5%)                              | None               | IP Address  |
+| SendData                   | Green      | Send a variable amount of data to another drone                                    | Low (1%)  | Remote         | Low (5%)                              | None               | IP Address  |
 
 
 ## Appendix B – Agent observation space
