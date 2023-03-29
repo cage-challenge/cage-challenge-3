@@ -2,9 +2,36 @@
 
 ![TTCP Logo](./images/TTCP-Logo-small.png) ![CAGE Logo](./images/CAGE-Logo-small.png)
 
-**New CAGE Challenge 3 Deadline: 17th of February 2023**
+# Leaderboard
+We are pleased to announce the following preliminary results for the TTCP CAGE Challenge 3.
 
-Several significant issues with CAGE Challenge 3 have been identified, which had a major impact on the reward and scoring of the challenge. We have resolved these issues in the updated CybORG version 3.1. To provide you with more time to train and validate your solutions using the updated version of CybORG, we are pushing back the submission deadline to the 17th of February. Please ensure that all submissions are for version 3.1.
+| Rank | Team Name  | Method         | Mean of Validated Result  | Standard Deviation of Validated Result |
+| --- | -------------------- | -------------------------- | ---------- | ----------- |
+| 1 |Mindrake |CanaryVanillaPatch |-1577.695 |800.4111092 
+| 2 |Mindrake | CanaryVanilla |-1579.651 |868.1013231 
+| 3 |ja^3 |Manual Agent |-3055.36 |952.5201221
+
+The current leader is team Mindrake who took the top two spots with their CanaryVanillaPatch and CanaryVanilla approaches, followed by team ja^3 with their Manual Agent approach. The validated scores in the preceding table were calculated by averaging over 1000 episodes using a random seed value of 523681.
+
+Unfortunately we were unable to validate the remaining submissions as they did not pass the validation checks. We present the unverified results of _all_ submissions received in the table below (ordered alphabetically), together with a link for those submissions that have been made publicly available. Please note that these unverified scores are not directly comparable as they have been generated using different environments and random seeds. If any participant would like to have their submission validated please contact us via email at [cage.aco.challenge@gmail.com](mailto:cage.aco.challenge@gmail.com) __no later than 5 April 2023__. While we are unable to fix your submission on your behalf, we can provide guidance on how to get it to pass validation in the evaluation environment. Also if you would like to make your submission publically available please email us a link for inclusion in the table below.
+
+| Team Name  | Method         | Mean of Unverified Score  |  Standard Deviation of Unverified Score | Link to submission |
+| -------------------- | -------------------------- | ---------- | ----------- | ----------- |
+| Experimental Novice  | Observational DQN          | \-6422.44  | 2105.202293 | |
+| ja^3                 | Manual Agent               | \-2903.99  | 910.6008838 | |
+| L1NNA                | PPO                        | \-4945.16  | 2249.683995 | https://github.com/NoorElAlfi/CC3_sub |
+| Mindrake             | CanaryVanilla              | \-1634.6   | 925.5905328 | |
+| Mindrake             | CanaryVanillaPatch         | \-1798.32  | 1055.803126 | |
+| Mindrake             | PPOZero                    | \-6494.826 | 1220.695356 | |
+| Mindrake             | WrappedCanary              | \-3780.169 | 1600.334479 | |
+| PA Consulting        | PPO Single Policies with RE3 | -6261.378 | 2035.002214 | |
+| Robert | Tangled Problem Graphs | -4610.4 | 2388.941669 | |
+| Unintelligent Agents | RetakeControl heuristic    | \-6085.12  | 2048.10676  | |
+| Unintelligent Agents | Curiosity killed the drone | \-5721.76  | 1988.48863  | |
+| UoA                  | QMix                       | \-8733.54  | 135.7782967 | |
+| UoA                  | MAPPO                      | \-8727.49  | 141.7100821 | |
+
+We would like to thank all those who participated in this challenge. We are especially pleased by the diversity of approaches including Deep Reinforcement Learning, Evolutionary Algorithms, and rules-based agents.
 
 ## Introduction
 
