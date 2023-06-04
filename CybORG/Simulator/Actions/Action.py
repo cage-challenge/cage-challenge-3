@@ -49,6 +49,7 @@ class InvalidAction(Action):
         self.error = error
 
     def execute(self, state):
+        print('Invalid Action, {}'.format(self.error))
         return Observation(success=False)
 
     @property

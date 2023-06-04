@@ -53,7 +53,8 @@ class Drone(Host):
             neighbour_positions = [nl.position for nl in neighbour_list] + [np.array([50., 50.])]
             average_position = np.mean(neighbour_positions, axis=0)
             centroid_disp = average_position - self.position
-            return self.centroid_strength * centroid_disp / max(abs(centroid_disp)) * self.max_velocity
+            if np.any(centroid_disp):  # checks if centroid_disp is not a zero vector
+                return self.centroid_strength * centroid_disp / max(abs(centroid_disp)) * self.max_velocity
         else:
             return np.zeros(2)
 

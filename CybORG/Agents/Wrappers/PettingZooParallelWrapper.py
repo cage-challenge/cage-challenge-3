@@ -5,6 +5,9 @@ from gym import spaces
 
 from CybORG import CybORG
 from CybORG.Agents.Wrappers import BaseWrapper
+from CybORG.Simulator.Actions.ConcreteActions.ControlTraffic import BlockTraffic, AllowTraffic
+from CybORG.Simulator.Actions.ConcreteActions.RemoveOtherSessions import RemoveOtherSessions
+from CybORG.Simulator.Actions.ConcreteActions.ExploitActions.RetakeControl import RetakeControl
 from CybORG.Simulator.Actions import Sleep
 
 
@@ -16,7 +19,7 @@ class PettingZooParallelWrapper(BaseWrapper):
         # assuming that the final value in the agent name indicates which drone that agent is on
         self.agent_host_map = {agent_name: f'drone_{agent_name.split("_")[-1]}' for agent_name in self.possible_agents}
         # get all ip_addresses
-        self.ip_addresses = list(self.unwrapped.get_ip_map().values())
+        self.ip_addresses = list(self.env.get_ip_map().values())
         num_drones = len(self.ip_addresses)
         self._action_spaces = {agent: spaces.Discrete(len(self.get_action_space(agent))) for agent in
                                self.possible_agents}
@@ -26,7 +29,7 @@ class PettingZooParallelWrapper(BaseWrapper):
                     num_drones - 1) * [num_drones, 101, 101, 2]) for agent_name in self.possible_agents}
         self.msg_len = 0
         self.metadata = {"render_modes": ["human", "rgb_array"], "name": "Cage_Challenge_3"}
-        self.agent_actions = self.int_to_cyborg_action()
+        #self.agent_actions = self.int_to_cyborg_action()
         self.dones = {agent: False for agent in self.possible_agents}
         self.rewards = {agent: 0. for agent in self.possible_agents}
         self.infos = {}
@@ -36,12 +39,12 @@ class PettingZooParallelWrapper(BaseWrapper):
               return_info: bool = False,
               options: Optional[dict] = None) -> dict:
         res = self.env.reset()
-        self.agent_actions = self.int_to_cyborg_action()
+        #self.agent_actions = self.int_to_cyborg_action()
         self.dones = {agent: False for agent in self.possible_agents}
         self.rewards = {agent: 0. for agent in self.possible_agents}
         self.infos = {}
         # assuming that the final value in the agent name indicates which drone that agent is on
-        self.int_to_action = self.int_to_cyborg_action()
+        #self.int_to_action = self.int_to_cyborg_action()
         self.agent_host_map = {agent_name: f'drone_{agent_name.split("_")[-1]}' for agent_name in self.possible_agents}
         self.ip_addresses = list(self.env.get_ip_map().values())
         return {agent: self.observation_change(agent, obs=self.env.get_observation(agent)) for agent in self.agents}
@@ -52,7 +55,8 @@ class PettingZooParallelWrapper(BaseWrapper):
 
         for agent, act in actions.items():
             assert self.action_space(agent).contains(act)
-            actions_dict[agent] = self.agent_actions[agent][act]
+            #actions_dict[agent] = self.agent_actions[agent][act]
+            actions_dict[agent] = self.int_to_cyborg_action(agent, act)   
 
         raw_obs, rews, dones, infos = self.env.parallel_step(actions_dict, messages=msgs)
         # green_agents = {agent: if }
@@ -61,7 +65,8 @@ class PettingZooParallelWrapper(BaseWrapper):
         # obs = {agent: self.observation_change(agent, obs) for agent in self.possible_agents}
         # set done to true if maximumum steps are reached
         self.dones.update(dones)
-        self.rewards = {agent: float(sum(agent_rew.values())) for agent, agent_rew in rews.items()}
+        self.rewards = {agent: float(sum(agent_rew.values()))/len(rews.items()) for agent, agent_rew in rews.items()}
+        #self.rewards = {agent: float(sum(agent_rew.values())) for agent, agent_rew in rews.items()}
         # send messages
         return obs, self.rewards, dones, infos
 
@@ -161,7 +166,7 @@ class PettingZooParallelWrapper(BaseWrapper):
         '''
         return self.dones[agent]
 
-    def int_to_cyborg_action(self):
+    def int_to_cyborg_action_old(self):
         '''
         Returns a dictionary containing dictionaries that maps the number selected by the agent to a specific CybORG action
 
@@ -191,6 +196,23 @@ class PettingZooParallelWrapper(BaseWrapper):
                                 act_count+=1
             cyborg_agent_actions[agent] = cyborg_action_to_int
         return cyborg_agent_actions
+    
+    def int_to_cyborg_action(self, agent, action_int):
+        '''
+        Returns the CybORG action corresponding to the action_int selected by the agent
+
+        '''
+        if action_int == 55:
+            return Sleep()
+        elif action_int == 18:
+            return RemoveOtherSessions(session=0, agent=agent)
+        else:
+            if action_int >= 0 and action_int < 18:
+                return RetakeControl(session=0, agent=agent, ip_address=self.ip_addresses[action_int])
+            elif action_int >= 19 and action_int < 37:
+                return BlockTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-19])
+            elif action_int >= 37 and action_int < 55:
+                return AllowTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-37])
     
     def get_action_space(self, agent):
         '''
@@ -239,7 +261,7 @@ class PettingZooParallelWrapper(BaseWrapper):
             self.ip_addresses = list(self.env.get_ip_map().values())
             num_drones = len(self.ip_addresses)
             obs_length = int(1 + num_drones + 1 + num_drones + 2 + (num_drones - 1) * (2 + 1 + 1) + self.msg_len)
-            new_obs = np.zeros(obs_length, dtype=np.int)
+            new_obs = np.zeros(obs_length, dtype=int)
             if obs is not None:
                 own_host_name = self.agent_host_map[agent]
                 # obs_length = success + own_drone(block Ips + processes + network conns) + other_drones_including_own(IPs + session_ + pos)
