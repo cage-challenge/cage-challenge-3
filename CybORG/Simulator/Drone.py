@@ -55,6 +55,8 @@ class Drone(Host):
             centroid_disp = average_position - self.position
             if np.any(centroid_disp):  # checks if centroid_disp is not a zero vector
                 return self.centroid_strength * centroid_disp / max(abs(centroid_disp)) * self.max_velocity
+            else:
+                return np.zeros(2)
         else:
             return np.zeros(2)
 

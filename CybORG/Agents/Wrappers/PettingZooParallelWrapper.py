@@ -65,8 +65,8 @@ class PettingZooParallelWrapper(BaseWrapper):
         # obs = {agent: self.observation_change(agent, obs) for agent in self.possible_agents}
         # set done to true if maximumum steps are reached
         self.dones.update(dones)
-        self.rewards = {agent: float(sum(agent_rew.values()))/len(rews.items()) for agent, agent_rew in rews.items()}
-        #self.rewards = {agent: float(sum(agent_rew.values())) for agent, agent_rew in rews.items()}
+        #self.rewards = {agent: float(sum(agent_rew.values()))/len(rews.items()) for agent, agent_rew in rews.items()}
+        self.rewards = {agent: float(sum(agent_rew.values())) for agent, agent_rew in rews.items()}
         # send messages
         return obs, self.rewards, dones, infos
 
@@ -207,12 +207,16 @@ class PettingZooParallelWrapper(BaseWrapper):
         elif action_int == 18:
             return RemoveOtherSessions(session=0, agent=agent)
         else:
+            ip_list = list(self.env.get_action_space(agent)['ip_address'].keys())
             if action_int >= 0 and action_int < 18:
-                return RetakeControl(session=0, agent=agent, ip_address=self.ip_addresses[action_int])
+                #return RetakeControl(session=0, agent=agent, ip_address=self.ip_addresses[action_int])
+                return RetakeControl(session=0, agent=agent, ip_address=ip_list[action_int])
             elif action_int >= 19 and action_int < 37:
-                return BlockTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-19])
+                #return BlockTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-19])
+                return BlockTraffic(session=0, agent=agent, ip_address=ip_list[action_int-19])
             elif action_int >= 37 and action_int < 55:
-                return AllowTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-37])
+                #return AllowTraffic(session=0, agent=agent, ip_address=self.ip_addresses[action_int-37])
+                return AllowTraffic(session=0, agent=agent, ip_address=ip_list[action_int-37])
     
     def get_action_space(self, agent):
         '''
