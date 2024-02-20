@@ -196,6 +196,8 @@ The validation process involves summing the average scores of 1000 episodes.  Th
 
 The CAGE team will continue to develop this platform and plan to announce a new challenge problem after the close of this challenge.
 
+Cage Challenge 4 was just released! Find more information ]here](https://github.com/cage-challenge/cage-challenge-4)
+
 ## Appendix A – Action sets 
 
 The action space of the agents in CAGE Challenge 3. The team column indicates which agents are able to perform that action.  
